@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Solare</title>
+</head>
+
+<body style="background-color:lightgreen;">
+  <h1 id="heading">Enter your contact info and metrics:</h1>
+  <small id="msg" class="form-text text-muted">We'll never share your information with anyone else.</small>
+  <form>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter full name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label>Enter your roof area in feet. If you require assistance, visit <a href="https://sunroof.withgoogle.com/">https://sunroof.withgoogle.com/ </a>to find your roof area, depending on whether you live in the domain.</label>
+      <input type="text" class="form-control" id="roof-area" placeholder="Roof area: ">
+    </div>
+    <div class="form-group">
+      <label>Enter your average yearly energy usage in kilowatts.</label>
+      <input type="text" class="form-control" id="energy-usage" placeholder="Average yearly energy usage:">
+    </div>
+    <div class="form-group">
+      <label>What percentage of this do you want to generate with solar panels?</label>
+      <input type="text" class="form-control" id="percentage">
+    </div>
+    <button id="submitButton" type="button" class="btn btn-primary">Submit</button>
+
+    <p id="info"></p>
+  </form>
+</body style='background-color: green'>
+<script>
+  const button = document.getElementById("submitButton");
+  button.addEventListener('click',  (event) => {
+      event.preventDefault();
+      let roof_area = parseInt(document.getElementById("roof-area").value);
+      let energy_usage = parseInt(document.getElementById("energy-usage").value);
+      let percentage = parseInt(document.getElementById("percentage").value);
+      let num_panels = Math.floor(roof_area/15)
+      let each_panel_wattage = (roof_area*(percentage/100))/num_panels
+      alert(`Here are your results: \n - You can fit about ${num_panels} solar panels on your roof. \n - Since you want to generate ${percentage} percent of your energy usage using solar panels, each panel would need to generate ${each_panel_wattage} watts.`)
+  });
+</script>
+</html>
