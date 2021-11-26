@@ -10,6 +10,9 @@
 </head>
 
 <body style="background-color:lightgreen;">
+  <div id="info-area">
+
+  </div>
   <h1 id="heading">Enter your contact info and metrics:</h1>
   <small id="msg" class="form-text text-muted">We'll never share your information with anyone else.</small>
   <form>
@@ -19,7 +22,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="email">
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label>Enter your roof area in feet. If you require assistance, visit <a href="https://sunroof.withgoogle.com/">https://sunroof.withgoogle.com/ </a>to find your roof area, depending on whether you live in the domain.</label>
@@ -34,8 +37,6 @@
       <input type="text" class="form-control" id="percentage">
     </div>
     <button id="submitButton" type="button" class="btn btn-primary">Submit</button>
-
-    <p id="info"></p>
   </form>
 </body style='background-color: green'>
 <script>
@@ -46,8 +47,17 @@
       let energy_usage = parseInt(document.getElementById("energy-usage").value);
       let percentage = parseInt(document.getElementById("percentage").value);
       let num_panels = Math.floor(roof_area/15)
-      let each_panel_wattage = (roof_area*(percentage/100))/num_panels
-      alert(`Here are your results: \n - You can fit about ${num_panels} solar panels on your roof. \n - Since you want to generate ${percentage} percent of your energy usage using solar panels, each panel would need to generate ${each_panel_wattage} watts.`)
+      let each_panel_wattage = (roof_area*1000*(percentage/100))/num_panels
+      let info_area = document.getElementById("info-area")
+      info_area.innerHTML += `
+      <h1 style = "text-align:center;
+      margin-top:50px"
+      >Your Results:</h1>
+        <br>
+        <h5 style = 
+        "margin-left:150px;
+        margin-right:150px"
+      ><br> - You can fit about ${num_panels} solar panels on your roof.<br> - Since you want to generate ${percentage} percent of your energy usage using solar panels, each panel would need to generate ${each_panel_wattage} watts</h5>"`
   });
 </script>
 </html>
